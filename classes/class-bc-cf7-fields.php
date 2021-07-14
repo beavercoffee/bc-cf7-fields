@@ -84,14 +84,14 @@ if(!class_exists('BC_CF7_Fields')){
         public function wpcf7_init(){
             wpcf7_add_form_tag('acceptance', function($tag){
                 $html = wpcf7_acceptance_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'acceptance', 'acceptance');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'acceptance', 'acceptance', $html);
                 return $html;
             }, [
         		'name-attr' => true,
 			]);
 			wpcf7_add_form_tag(['checkbox', 'checkbox*'], function($tag){
                 $html = wpcf7_checkbox_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'checkbox', 'checkbox');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'checkbox', 'checkbox', $html);
                 return $html;
             }, [
 				'multiple-controls-container' => true,
@@ -100,21 +100,21 @@ if(!class_exists('BC_CF7_Fields')){
         	]);
 			wpcf7_add_form_tag(['date', 'date*'], function($tag){
                 $html = wpcf7_date_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'date', 'date');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'date', 'date', $html);
                 return $html;
             }, [
         		'name-attr' => true,
         	]);
             wpcf7_add_form_tag(['email', 'email*'], function($tag){
                 $html = wpcf7_text_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'email', 'text');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'email', 'text', $html);
                 return $html;
             }, [
         		'name-attr' => true,
         	]);
 			wpcf7_add_form_tag(['file', 'file*'], function($tag){
                 $html = wpcf7_file_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'file', 'file');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'file', 'file', $html);
                 return $html;
             }, [
 				'file-uploading' => true,
@@ -122,14 +122,14 @@ if(!class_exists('BC_CF7_Fields')){
         	]);
 			wpcf7_add_form_tag(['number', 'number*'], function($tag){
                 $html = wpcf7_number_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'number', 'number');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'number', 'number', $html);
                 return $html;
             }, [
         		'name-attr' => true,
         	]);
             wpcf7_add_form_tag(['radio', 'radio*'], function($tag){
                 $html = wpcf7_checkbox_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'radio', 'checkbox');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'radio', 'checkbox', $html);
                 return $html;
             }, [
 				'multiple-controls-container' => true,
@@ -138,14 +138,14 @@ if(!class_exists('BC_CF7_Fields')){
         	]);
 			wpcf7_add_form_tag(['range', 'range*'], function($tag){
 				$html = wpcf7_number_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'range', 'number');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'range', 'number', $html);
                 return $html;
             }, [
         		'name-attr' => true,
         	]);
 			wpcf7_add_form_tag(['select', 'select*'], function($tag){
                 $html = wpcf7_select_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'select', 'select');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'select', 'select', $html);
                 return $html;
             }, [
         		'name-attr' => true,
@@ -153,40 +153,40 @@ if(!class_exists('BC_CF7_Fields')){
         	]);
             wpcf7_add_form_tag(['submit'], function($tag){
                 $html = wpcf7_submit_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'submit', 'submit');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'submit', 'submit', $html);
                 return $html;
             });
             wpcf7_add_form_tag(['password', 'password*'], function($tag){
                 $html = wpcf7_text_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'password', 'text');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'password', 'text', $html);
                 return $html;
             }, [
         		'name-attr' => true,
         	]);
             wpcf7_add_form_tag(['tel', 'tel*'], function($tag){
                 $html = wpcf7_text_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'tel', 'text');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'tel', 'text', $html);
                 return $html;
             }, [
         		'name-attr' => true,
         	]);
             wpcf7_add_form_tag(['text', 'text*'], function($tag){
                 $html = wpcf7_text_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'text', 'text');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'text', 'text', $html);
                 return $html;
             }, [
         		'name-attr' => true,
         	]);
             wpcf7_add_form_tag(['textarea', 'textarea*'], function($tag){
                 $html = wpcf7_textarea_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'textarea', 'textarea');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'textarea', 'textarea', $html);
                 return $html;
             }, [
         		'name-attr' => true,
         	]);
             wpcf7_add_form_tag(['url', 'url*'], function($tag){
                 $html = wpcf7_text_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'url', 'text');
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'url', 'text', $html);
                 return $html;
             }, [
         		'name-attr' => true,
