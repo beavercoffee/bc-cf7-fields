@@ -12,11 +12,10 @@ Plugin URI: https://github.com/beavercoffee/bc-cf7-fields
 Requires at least: 5.7
 Requires PHP: 5.6
 Text Domain: bc-cf7-fields
-Version: 1.7.14
+Version: 1.7.17
 */
 
 if(defined('ABSPATH')){
-    define('BC_CF7_FIELDS', __FILE__);
-    require_once(plugin_dir_path(BC_CF7_FIELDS) . 'classes/class-bc-cf7-fields.php');
-    BC_CF7_Fields::get_instance(BC_CF7_FIELDS);
+    require_once(plugin_dir_path(__FILE__) . 'classes/class-bc-cf7-fields.php');
+    BC_CF7_Fields::get_instance(__FILE__);
 }

@@ -47,7 +47,7 @@ if(!class_exists('BC_CF7_Fields')){
 
     	private function __construct($file = ''){
             $this->file = $file;
-            add_action('plugins_loaded', [$this, 'plugins_loaded']);
+            add_action('bc_cf7_loaded', [$this, 'bc_cf7_loaded']);
         }
 
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,13 +56,7 @@ if(!class_exists('BC_CF7_Fields')){
     	//
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        public function plugins_loaded(){
-            if(!defined('BC_FUNCTIONS')){
-        		return;
-        	}
-            if(!defined('WPCF7_VERSION')){
-        		return;
-        	}
+        public function bc_cf7_loaded(){
             add_action('wpcf7_init', [$this, 'wpcf7_init']);
             add_filter('wpcf7_validate_password', [$this, 'wpcf7_password_validation_filter'], 10, 2);
             add_filter('wpcf7_validate_password*', [$this, 'wpcf7_password_validation_filter'], 10, 2);
@@ -77,6 +71,7 @@ if(!class_exists('BC_CF7_Fields')){
     		remove_action('wpcf7_init', 'wpcf7_add_form_tag_text');
     		remove_action('wpcf7_init', 'wpcf7_add_form_tag_textarea');
             bc_build_update_checker('https://github.com/beavercoffee/bc-cf7-fields', $this->file, 'bc-cf7-fields');
+            do_action('bc_cf7_fields_loaded');
         }
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,6 +122,13 @@ if(!class_exists('BC_CF7_Fields')){
             }, [
         		'name-attr' => true,
         	]);
+            wpcf7_add_form_tag(['password', 'password*'], function($tag){
+                $html = wpcf7_text_form_tag_handler($tag);
+                $html = apply_filters('bc_cf7_field', $html, $tag, 'password', 'text', $html);
+                return $html;
+            }, [
+        		'name-attr' => true,
+        	]);
             wpcf7_add_form_tag(['radio', 'radio*'], function($tag){
                 $html = wpcf7_checkbox_form_tag_handler($tag);
                 $html = apply_filters('bc_cf7_field', $html, $tag, 'radio', 'checkbox', $html);
@@ -156,13 +158,6 @@ if(!class_exists('BC_CF7_Fields')){
                 $html = apply_filters('bc_cf7_field', $html, $tag, 'submit', 'submit', $html);
                 return $html;
             });
-            wpcf7_add_form_tag(['password', 'password*'], function($tag){
-                $html = wpcf7_text_form_tag_handler($tag);
-                $html = apply_filters('bc_cf7_field', $html, $tag, 'password', 'text', $html);
-                return $html;
-            }, [
-        		'name-attr' => true,
-        	]);
             wpcf7_add_form_tag(['tel', 'tel*'], function($tag){
                 $html = wpcf7_text_form_tag_handler($tag);
                 $html = apply_filters('bc_cf7_field', $html, $tag, 'tel', 'text', $html);
