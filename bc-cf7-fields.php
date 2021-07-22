@@ -12,10 +12,14 @@ Plugin URI: https://github.com/beavercoffee/bc-cf7-fields
 Requires at least: 5.7
 Requires PHP: 5.6
 Text Domain: bc-cf7-fields
-Version: 1.7.17
+Version: 1.7.22
 */
 
 if(defined('ABSPATH')){
+    require_once(plugin_dir_path(__FILE__) . 'classes/class-bc-cf7-bootstrap-4.php');
+    BC_CF7_Bootstrap_4::get_instance(__FILE__);
     require_once(plugin_dir_path(__FILE__) . 'classes/class-bc-cf7-fields.php');
     BC_CF7_Fields::get_instance(__FILE__);
+    require_once(plugin_dir_path(__FILE__) . 'classes/class-bc-cf7-floating-labels.php');
+    BC_CF7_Floating_Labels::get_instance(__FILE__);
 }
