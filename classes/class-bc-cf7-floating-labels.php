@@ -118,8 +118,8 @@ if(!class_exists('BC_CF7_Floating_Labels')){
 
         public function bc_cf7_fields_loaded(){
             add_action('wpcf7_enqueue_scripts', [$this, 'wpcf7_enqueue_scripts']);
-            add_action('wpcf7_enqueue_styles', [$this, 'wpcf7_enqueue_styles']);
             add_filter('bc_cf7_field', [$this, 'bc_cf7_field'], 15, 5);
+            bc_enqueue_floating_labels();
         }
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -154,17 +154,9 @@ if(!class_exists('BC_CF7_Floating_Labels')){
         public function wpcf7_enqueue_scripts(){
             $src = plugin_dir_url($this->file) . 'assets/bc-cf7-floating-labels.js';
             $ver = filemtime(plugin_dir_path($this->file) . 'assets/bc-cf7-floating-labels.js');
-            wp_enqueue_script('bc-cf7-floating-labels', $src, ['contact-form-7'], $ver, true);
+            wp_enqueue_script('bc-cf7-floating-labels', $src, ['bc-floating-labels'], $ver, true);
             wp_add_inline_script('bc-cf7-floating-labels', 'bc_cf7_floating_labels.init();');
 
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        public function wpcf7_enqueue_styles(){
-            $src = plugin_dir_url($this->file) . 'assets/bc-cf7-floating-labels.css';
-            $ver = filemtime(plugin_dir_path($this->file) . 'assets/bc-cf7-floating-labels.css');
-            wp_enqueue_style('bc-cf7-floating-labels', $src, ['contact-form-7'], $ver);
         }
 
     	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
